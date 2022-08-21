@@ -14,27 +14,39 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
-
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Weather Dashboard</title>
   </head>
   <body>
-    <nav class="card-panel teal lighten-2">Weather Dashboard</nav>
-    <div class="card">
-      <div class="search">
+    <!--nav bar-->
+    <nav class="card-panel #1a237e indigo darken-4">Weather Dashboard</nav>
+
+    <!--Search section and previous cities-->
+    <div class="card row">
+      <div class="search col s3">
         Search for a City:
-        <input type="text" class="search-bar" />
+        <input type="text" class="search-bar" placeholder="Enter a city" />
         <button
-          class="btn waves-effect waves-light"
+          class="btn waves-effect waves-light #2196f3 blue col s"
           type="submit"
           name="action"
         >
-          Submit
-          <i class="material-icons right">send</i>
+          Search
+          <i class="material-icons right">search</i>
         </button>
+        <div>Past Searches</div>
+        <ul id="past-cities" class="hide"></ul>
       </div>
-      <div class="previousResults">Placeholder</div>
-      <div class="currentResult">Image</div>
+
+      <!--Current forecast-->
+      <div class="currentResult">
+        Image
+        <h1 class="name"></h1>
+        <p class="description"></p>
+        <p class="temp"></p>
+      </div>
+
+      <!--5 day forecast-->
       <div class="Forecast">5-Day Forecast</div>
     </div>
     <script src="./assets/JS/script.js"></script>
