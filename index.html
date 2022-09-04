@@ -17,38 +17,87 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Weather Dashboard</title>
   </head>
+
   <body>
     <!--nav bar-->
     <nav class="card-panel #1a237e indigo darken-4">Weather Dashboard</nav>
 
     <!--Search section and previous cities-->
-    <div class="card row">
-      <div class="search col s3">
-        Search for a City:
-        <input type="text" class="search-bar" placeholder="Enter a city" />
+    <div class="container">
+      <div class="card row">
+        <!--search for city-->
+        <div class="search col s3">
+          Search for a City:
+          <input type="text" class="search-bar" placeholder="Enter a city" />
+          <button
+          class="btn waves-effect waves-light #2196f3 blue col s"
+          type="submit"
+          name="action"
+          >
+          Search
+          <i class="material-icons right">search</i>
+          </button>
+        </div>
+
+        <div class="recentSearch col s3">
         <button
           class="btn waves-effect waves-light #2196f3 blue col s"
           type="submit"
           name="action"
         >
-          Search
-          <i class="material-icons right">search</i>
-        </button>
-        <div>Past Searches</div>
-        <ul id="past-cities" class="hide"></ul>
-      </div>
+          Clear History
+          <i class="material-icons right"></i>
+          <div>Past Searches</div>
+          <ul id="past-cities" class="hide"></ul>
+        </div>
 
       <!--Current forecast-->
-      <div class="currentResult">
+      <div class="currentResult col s8">
         Image
-        <h1 class="name"></h1>
-        <p class="description"></p>
-        <p class="temp"></p>
+        <h2 class="name">Current Forecast</h2>
+        <p class="temp">Temperature:</p>
+        <p class="humidity">Humidity:</p>
+        <p class="windSpeed">Wind Speed:</p>
+        <p class="uvIndex">UV index:</p>
       </div>
 
       <!--5 day forecast-->
-      <div class="Forecast">5-Day Forecast</div>
+      <div class="Forecast col s8">
+        <h2>5-Day Forecast</h2>
+        
+        <div>
+          <p>Temperature</p>
+          <p>Humidity</p>
+        </div>
+
+        <div>
+          <p>Temperature</p>
+          <p>Humidity</p>
+        </div>
+
+        <div>
+          <p>Temperature</p>
+          <p>Humidity</p>
+        </div>
+
+        <div>
+          <p>Temperature</p>
+          <p>Humidity</p>
+        </div>
+
+        <div>
+          <p>Temperature</p>
+          <p>Humidity</p>
+        </div>
+      </div>
+      
+
     </div>
+
+    <footer>
+      Weather Dashboard &copy 2022 made by Joshua Aldrich
+    </footer>
+
     <script src="./assets/JS/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
