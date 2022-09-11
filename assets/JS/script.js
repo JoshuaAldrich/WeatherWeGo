@@ -11,32 +11,49 @@
 // THEN I am again presented with current and future conditions for that city
 
 let cities;
-let button = document.querySelector("button");
-let inputValue = document.querySelector(".inputValue");
-let name = document.querySelector(".name");
-let description = document.querySelector(".description");
-let temp = document.querySelector(".temp");
+let searchButton = document.getElementById("search-city");
+let searchBar = document.querySelector("#search-bar");
+let clearHistory = document.querySelector("#clearHistory");
+let currentResult = document.querySelector(".currentResult");
+let currentTemperature = document.querySelector(".temp");
+let currentHumidty = document.querySelector(".humidity");
+let currentWindSpeed = document.querySelector(".windSpeed");
+let currentUVIndex = document.querySelector(".uvIndex");
+let pastSearch = document.querySelector(".recentSearch");
 const apiKey = "bb92cbec3b50947b23fb22f9708980b8";
 
-let previousSearch = function () {
-  localStorage.setItem("cities", JSON.stringify(cities));
+//Get coordinates for chosen city
+let conversion = async function (city) {
+  let coordinates = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
+  let response = await fetch(coordinates);
+  let data = await response.json();
+  console.log(data);
+  return data;
+};
+conversion("Orlando");
+
+//API call to Openweather
+let getWeather = async function (city) {
+  try {
+    let latLon = await conversion(city);
+
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latLon[0].lat}&lon=${latLon[0].lon}&appid=${apiKey}`;
+    let cityInformation = await fetch(apiUrl);
+    let cityWeather = await cityInformation.json();
+    let apiUrl5Day = `https://api.openweathermap.org/data/2.5/forecast?lat=${latLon[0].lat}&lon=${latLon[0].lon}&appid=${apiKey}`;
+    let cityInformation5Day = await fetch(apiUrl5Day);
+    let cityWeather5Day = await cityInformation5Day.json();
+    displayWeather(cityWeather);
+    displayWeather(cityWeather5Day);
+  } catch (error) {
+    alert("Connection to OpenWeather API not working.");
+  }
 };
 
-//Fetch API
-let currentCity = function (city) {
-  let apiSearch =
-    "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}";
+function displayWeather(data) {
+  console.log(data);
+}
 
-  fetch(apiSearch).then(function (response) {
-    if (response.ok) {
-      console.log(response);
-      response.json().then(function (data) {
-        console.log(data);
-        getWeather(data, city);
-      });
-    } else {
-      alert("error");
-    }
-  });
-};
-
+searchButton.addEventListener("click", function () {
+  getWeather(searchBar.value);
+});

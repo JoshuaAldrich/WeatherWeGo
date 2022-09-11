@@ -14,6 +14,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
+    <!--Css Stylesheet-->
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Weather Dashboard</title>
   </head>
@@ -23,13 +24,14 @@
     <nav class="card-panel #1a237e indigo darken-4">Weather Dashboard</nav>
 
     <!--Search section and previous cities-->
-    <div class="container">
+    <div class="container" id="dashboard">
       <div class="card row">
         <!--search for city-->
         <div class="search col s3">
           Search for a City:
-          <input type="text" class="search-bar" placeholder="Enter a city" />
+          <input type="text" id="search-bar" placeholder="Enter a city" />
           <button
+          id="search-city"
           class="btn waves-effect waves-light #2196f3 blue col s"
           type="submit"
           name="action"
@@ -39,8 +41,9 @@
           </button>
         </div>
 
-        <div class="recentSearch col s3">
+        <div class="search-history col s3">
         <button
+          id="clearHistory"
           class="btn waves-effect waves-light #2196f3 blue col s"
           type="submit"
           name="action"
@@ -63,32 +66,6 @@
 
       <!--5 day forecast-->
       <div class="Forecast col s8">
-        <h2>5-Day Forecast</h2>
-        
-        <div>
-          <p>Temperature</p>
-          <p>Humidity</p>
-        </div>
-
-        <div>
-          <p>Temperature</p>
-          <p>Humidity</p>
-        </div>
-
-        <div>
-          <p>Temperature</p>
-          <p>Humidity</p>
-        </div>
-
-        <div>
-          <p>Temperature</p>
-          <p>Humidity</p>
-        </div>
-
-        <div>
-          <p>Temperature</p>
-          <p>Humidity</p>
-        </div>
       </div>
       
 
@@ -98,7 +75,13 @@
       Weather Dashboard &copy 2022 made by Joshua Aldrich
     </footer>
 
+    <!--JQuery-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!--moment.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!--Javascript link-->
     <script src="./assets/JS/script.js"></script>
+    <!--Materialize link-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
 </html>
