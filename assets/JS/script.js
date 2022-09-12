@@ -32,7 +32,7 @@ let conversion = async function (city) {
   console.log(data);
   return data;
 };
-conversion("Orlando");
+// conversion("Orlando");
 
 //API call to Openweather
 let getWeather = async function (city) {
@@ -63,7 +63,7 @@ let getWeather = async function (city) {
         list.push(item);
       }
     });
-    list.shift(0);
+    // list.shift(0);
     cityWeather.uvi = cityWeatheruvi;
     displayWeather(cityWeather, list);
     store(city);
@@ -71,7 +71,8 @@ let getWeather = async function (city) {
     div.innerHTML = city;
     citiesContainer.appendChild(div);
   } catch (error) {
-    alert("Connection to OpenWeather API not working.");
+    // alert("Connection to OpenWeather API not working.");
+    console.log(error);
   }
 };
 
@@ -88,12 +89,17 @@ function displayWeather(currentWeather, currentWeather5Day) {
   currentHumidty.innerHTML = "Humidity:" + currentWeather.main.humidity;
   currentWindSpeed.innerHTML = "Wind Speed:" + currentWeather.wind.speed;
   currentUVIndex.innerHTML = "UV index:" + currentWeather.uvi.value;
+  forecast5Day.innerHTML = "";
   currentWeather5Day.forEach(function (item) {
     let div = document.createElement("div");
+    div.classList.add("col");
+    div.classList.add("m4");
     div.innerHTML = `
+    <div class="forecast-card">
     <p>${item.dt_txt.split(" ")[0]}</p>
     <p>Humidity: ${item.main.humidity} %</p>
     <p>Temperature: ${kelvinToFahrenheit(item.main.temp)}</p>
+    </div>
     `;
     forecast5Day.appendChild(div);
   });

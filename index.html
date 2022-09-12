@@ -32,7 +32,7 @@
           <input type="text" id="search-bar" placeholder="Enter a city" />
           <button
           id="search-city"
-          class="btn waves-effect waves-light #2196f3 blue col s"
+          class="btn waves-effect waves-light #2196f3 blue col s12"
           type="submit"
           name="action"
           >
@@ -42,32 +42,25 @@
           <div class="localStorage"></div>
         </div>
 
-        <div class="search-history col s3">
-        <button
-          id="clearHistory"
-          class="btn waves-effect waves-light #2196f3 blue col s"
-          type="submit"
-          name="action"
-        >
-          Clear History
-          <i class="material-icons right"></i>
-          <div>Past Searches</div>
-          <ul id="past-cities" class="hide"></ul>
-        </div>
 
       <!--Current forecast-->
-      <div class="currentResult col s8">
-        Image
-        <h2 class="name">Current Forecast</h2>
-        <p class="temp">Temperature:</p>
-        <p class="humidity">Humidity:</p>
-        <p class="windSpeed">Wind Speed:</p>
-        <p class="uvIndex">UV index:</p>
+      <div class="currentResult col s9">
+        <div class="row">
+          <div class="col s12">
+            <h2 class="name">Current Forecast</h2>
+              <p class="temp">Temperature:</p>
+              <p class="humidity">Humidity:</p>
+              <p class="windSpeed">Wind Speed:</p>
+              <p class="uvIndex">UV index:</p>
+          </div>
+        <!--5 day forecast-->
+          <div class="forecast row">
+          </div>
+        </div>
       </div>
 
-      <!--5 day forecast-->
-      <div class="forecast col s8">
-      </div>
+      
+      
       
 
     </div>
