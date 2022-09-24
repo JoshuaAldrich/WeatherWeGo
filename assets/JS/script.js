@@ -27,7 +27,7 @@ const apiKey = "bb92cbec3b50947b23fb22f9708980b8";
 
 //Get coordinates for chosen city
 let conversion = async function (city) {
-  let coordinates = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
+  let coordinates = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
   let response = await fetch(coordinates);
   let data = await response.json();
   return data;
