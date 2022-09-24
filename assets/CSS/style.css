@@ -32,3 +32,27 @@ input[type="text"] {
   margin-bottom: 1rem;
   font-size: 0.65rem;
 }
+
+nav {
+  font-size: 35px;
+  padding-bottom: 20px;
+}
+
+.search {
+  font-size: 20px;
+}
+
+.uvIndexHigh {
+  background-color: red;
+}
+
+.uvIndexLow {
+  background-color: green;
+}
+
+button {
+  background-color: gray;
+  color: white;
+  border-radius: 5px;
+  border-style: ridge;
+}

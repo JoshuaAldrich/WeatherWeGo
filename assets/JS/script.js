@@ -22,6 +22,7 @@ let currentUVIndex = document.querySelector(".uvIndex");
 let pastSearch = document.querySelector(".recentSearch");
 let forecast5Day = document.querySelector(".forecast");
 let citiesContainer = document.querySelector(".localStorage");
+let currentCity = document.querySelector(".name");
 const apiKey = "bb92cbec3b50947b23fb22f9708980b8";
 
 //Get coordinates for chosen city
@@ -29,10 +30,8 @@ let conversion = async function (city) {
   let coordinates = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
   let response = await fetch(coordinates);
   let data = await response.json();
-  console.log(data);
   return data;
 };
-// conversion("Orlando");
 
 //API call to Openweather
 let getWeather = async function (city) {
@@ -67,9 +66,6 @@ let getWeather = async function (city) {
     cityWeather.uvi = cityWeatheruvi;
     displayWeather(cityWeather, list);
     store(city);
-    let div = document.createElement("div");
-    div.innerHTML = city;
-    citiesContainer.appendChild(div);
   } catch (error) {
     // alert("Connection to OpenWeather API not working.");
     console.log(error);
@@ -83,27 +79,41 @@ function kelvinToFahrenheit(temp) {
 
 //Displays weather to website
 function displayWeather(currentWeather, currentWeather5Day) {
-  console.log(currentWeather, currentWeather5Day);
+  currentCity.innerHTML = searchBar.value;
   currentTemperature.innerHTML =
     "Temperature:" + kelvinToFahrenheit(currentWeather.main.temp);
-  currentHumidty.innerHTML = "Humidity:" + currentWeather.main.humidity;
-  currentWindSpeed.innerHTML = "Wind Speed:" + currentWeather.wind.speed;
+  currentHumidty.innerHTML = "Humidity:" + currentWeather.main.humidity + "%";
+  currentWindSpeed.innerHTML =
+    "Wind Speed:" + currentWeather.wind.speed + " MPH";
   currentUVIndex.innerHTML = "UV index:" + currentWeather.uvi.value;
+
   forecast5Day.innerHTML = "";
   currentWeather5Day.forEach(function (item) {
     let div = document.createElement("div");
     div.classList.add("col");
     div.classList.add("m4");
+    console.log(item);
     div.innerHTML = `
     <div class="forecast-card">
     <p>${item.dt_txt.split(" ")[0]}</p>
     <p>Humidity: ${item.main.humidity} %</p>
     <p>Temperature: ${kelvinToFahrenheit(item.main.temp)}</p>
+    <p>Wind Speed: ${item.wind.speed} MPH</p>
     </div>
     `;
     forecast5Day.appendChild(div);
   });
 }
+
+// uvIndexColor();
+//uv index coloration
+// function uvIndexColor() {
+//   if (currentUVIndex > 7) {
+//     currentUVIndex.setAttribute(".uvIndexHigh");
+//   } else {
+//     currentUVIndex.setAttribute(".uvIndexLow");
+//   }
+// }
 
 //Click search button
 searchButton.addEventListener("click", function () {
@@ -116,10 +126,31 @@ function store(city) {
   if (!currentStorage) {
     currentStorage = [];
   }
-  if (currentStorage.includes(city)) {
-  } else {
+  if (!currentStorage.includes(city)) {
+    let storage = document.createElement("button");
+    storage.innerHTML = city;
+    citiesContainer.appendChild(storage);
+    storage.addEventListener("click", function (e) {
+      getWeather(e.target.textContent);
+    });
     currentStorage.push(city);
   }
-  console.log(currentStorage);
   localStorage.setItem("cityNames", JSON.stringify(currentStorage));
 }
+
+//Grabbing saved cities in local storage and display them all
+function displayPastCities() {
+  let currentStorage = JSON.parse(localStorage.getItem("cityNames"));
+  currentStorage.forEach(function (city) {
+    let storage = document.createElement("button");
+    storage.innerHTML = city;
+    citiesContainer.appendChild(storage);
+    storage.addEventListener("click", function (e) {
+      getWeather(e.target.textContent);
+    });
+  });
+}
+
+//Take a past search and search the API to get that working
+
+displayPastCities();
